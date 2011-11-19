@@ -16,9 +16,7 @@ class UploadsController < ApplicationController
   # GET /uploads/new
   # GET /uploads/new.json
   def new
-   @upload = Upload.new(params[:id])
-
-
+    @upload = Upload.new(params[:id])
   end
 
   # GET /uploads/1/edit
@@ -29,10 +27,13 @@ class UploadsController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
+    debugger
     @upload = Upload.new(params[:upload])
       if @upload.save
-      	 flash[:notice]= "Succesfully created gallery."
-	 redirect_to @upload
+      	 flash[:notice]= "Succesfully created gallery: " + @upload.attributes.inspect
+	  uploader = ResumeUploader.new
+debugger          
+          redirect_to @upload
 	else
 	 render :action => 'new'
      end

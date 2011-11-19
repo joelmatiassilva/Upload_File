@@ -1,10 +1,12 @@
 source 'http://rubygems.org'
 
+gem 'docsplit', '0.6.0'
+gem 'rake', '0.9.2.2'
 gem 'rails', '3.1.0'
 gem 'execjs'
 gem 'therubyracer'
 gem 'carrierwave'
-
+gem 'ruby-debug19'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
