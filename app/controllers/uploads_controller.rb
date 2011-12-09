@@ -27,12 +27,12 @@ class UploadsController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
-    debugger
+   # debugger
     @upload = Upload.new(params[:upload])
       if @upload.save
       	 flash[:notice]= "Succesfully created gallery: " + @upload.attributes.inspect
 	  uploader = ResumeUploader.new
-debugger          
+	  #debugger          
           redirect_to @upload
 	else
 	 render :action => 'new'
