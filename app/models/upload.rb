@@ -3,25 +3,41 @@ require 'docsplit'
 class Upload < ActiveRecord::Base
   attr_accessible :detalle, :resume
   mount_uploader :resume, ResumeUploader
-  before_save :update_asset_attributes
+  before_save :crear_archivo_text
+  after_save :guardar_contenido_text_en_tabla
 
-  def update_asset_attributes
+  def crear_archivo_text
    cad = "" 
    self.detalle = ""
-   debugger
    Docsplit.extract_text("/home/joel/Escritorio/Upload_File/public"+resume.to_s, :output=>'public/archivos')
-  # File.open("/home/joel/Escritorio/upload_joel/public"+resume.to_s, 'r') do |f1|
-   #  while linea = f1.gets
+  # debugger
+    #File.open("/home/joel/Escritorio/Upload_File/public"+resume.to_s.gsub(".pdf",".txt"), 'r') do |f1|
+      #debugger
+
+     # while linea = f1.gets
     #	cad = cad + linea
-     #end
+    # end
     #end
     #debugger
-    #self.detalle = cad
+   # self.detalle = cad
     #debugger
     #File.open('joe.txt', 'w') do |f2|
      #f2.puts cad
     #end
-
   end
+
+  def guardar_contenido_text_en_tabla
+	cadena = ""
+	self.detalle =""
+    	File.open("/home/joel/Escritorio/Upload_File/public"+resume.to_s.gsub(".pdf", ".txt"), 'r') do |f1|
+   		while lineaArchivo = f1.gets
+	 	 cadena = cadena + lineaArchivo
+ 		end
+	end
+	debugger
+	self.detalle = cadena
+	debugger
+  end
+ 
 
 end
