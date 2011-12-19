@@ -6,6 +6,7 @@ class ResumeUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   # include CarrierWave::ImageScience
+  
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -17,6 +18,14 @@ class ResumeUploader < CarrierWave::Uploader::Base
     "archivos/"
   end
 
+  def move_to_cache
+   true
+  end
+
+  def move_to_strore
+   true
+  end
+  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
